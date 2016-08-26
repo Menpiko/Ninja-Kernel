@@ -22,11 +22,7 @@ SOURCE_DIR=
 TOOLCHAIN_DIR=
 
 # NINJA_BRANCH: The branch that you want to compile on
-# Choices:
-# m (for the M branch)
-# n (for the N branch)
-# e.g. NINJA_BRANCH=m
-NINJA_BRANCH=
+NINJA_BRANCH=n
 
 
 #################
@@ -137,7 +133,7 @@ if [[ `ls ${ZIMAGE_DIR}/${KERNEL} 2>/dev/null | wc -l` != "0" ]]; then
    ${ANYKERNEL_DIR}/tools/dtbToolCM -v2 -o ${ANYKERNEL_DIR}/${DTBIMAGE} -s 2048 -p scripts/dtc/ arch/arm64/boot/dts/
    cp -vr ${ZIMAGE_DIR}/${KERNEL} ${ANYKERNEL_DIR}/zImage
    cd ${ANYKERNEL_DIR}
-   zip -x@zipexclude -r9 ${KERNEL_VER}.zip *
+   zip -r9 ${KERNEL_VER}.zip * -x README ${KERNEL_VER}.zip
 
 else
    BUILD_RESULT_STRING="BUILD FAILED"
